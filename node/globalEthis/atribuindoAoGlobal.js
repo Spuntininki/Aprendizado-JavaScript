@@ -1,0 +1,3 @@
+global.Utils = {
+    nome: 'teste'
+}

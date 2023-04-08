@@ -12,6 +12,12 @@ pessego_enlatado = new Produto('pessego', 5.3, 130);
 
 console.log(pessego_enlatado.nome)
 
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
 
 //Segue um ilustração de algumas particularidaes no que tangem a tipagem do javascript
 console.log(typeof Object)
@@ -23,6 +29,6 @@ console.log(typeof new Cliente)
 
 
 //uma "classe" em javascript ainda pode ser considerado como uma função "por baixo dos panos."
-class Produto {} 
-console.log(typeof Produto)
-console.log(typeof new Produto())
+class Product {} 
+console.log(typeof Product)
+console.log(typeof new Product())
