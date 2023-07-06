@@ -16,10 +16,20 @@ function generateRandomNumber(min, max, numerosProibidos = []){
 }
 
 
-async function numerosMegaSena(quantidadeDeNumeros){
+async function numerosMegaSena(quantidadeDeNumeros, retry=1){
     const ArrayDeNumerosGerados = []
     for(let _ of Array(quantidadeDeNumeros).fill()){
-        ArrayDeNumerosGerados.push(await generateRandomNumber(1, 60, ArrayDeNumerosGerados))
+        try{
+            ArrayDeNumerosGerados.push(await generateRandomNumber(1, 60, ArrayDeNumerosGerados))
+
+        }catch(e){
+
+            if(retry > 3){
+                throw "Não deu certo!"
+            }else{
+                return numerosMegaSena(quantidadeDeNumeros, retry + 1)                
+            }
+        }
 
     }
     return ArrayDeNumerosGerados
@@ -27,6 +37,6 @@ async function numerosMegaSena(quantidadeDeNumeros){
 
 }
 
-numerosMegaSena(10)
+numerosMegaSena(15)
     .then(console.log)
     .catch(console.log)

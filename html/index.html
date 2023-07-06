@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Index - aprendizado desenvolvimento WEB</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <header>
+        <h1 class="main-title">Aprendizado desenvolvimento WEB</h1>
+    </header>
+    <nav>
+        <a href wm-nav="exercicios/ex1.html" teste-param>Exercicio 1</a> 
+    </nav>
+    <div id="ex-content">
+
+    </div>
+</body>
+
+</html>
+<script>
+    document.querySelectorAll('[wm-nav]').forEach(link => {
+        const conteudo = document.getElementById('ex-content')
+        console.log(link)
+        link.onclick = function(e) {
+            e.preventDefault()
+            console.log('127.0.0.1:5500/' + link.getAttribute('wm-nav'))
+            fetch(link.getAttribute('wm-nav'))            
+            .then(resp => resp.text())
+            .then(html => conteudo.innerHTML = html)
+            
+            fetch('https://api.adviceslip.com/advice')
+                .then(response => response.json())
+                .then(content => console.log(content.slip.advice))
+        }
+        }
+    )
+    
+        
+    
+
+</script>
+
+<!--
+document.querySelectorAll('[wm-nav]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+            
+            link.onclick = function(e) {
+                e.preventDefault()
+                fetch(link.getAttribute('wm-nav'))
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+
+-->
