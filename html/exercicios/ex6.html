@@ -1,0 +1,69 @@
+<video id="meuVideo" width="800" height="450" controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser não suporta a tag de video
+
+</video>
+
+<div wm-progresso="meuVideo" class="progresso">
+    <div></div>
+
+</div>
+
+<div>
+    <button wm-play="meuVideo">Play</button>
+    <button wm-pause="meuVideo">Pause</button>
+</div>
+
+
+<style>
+    .progresso {
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso > div {
+        background-color: red;
+        color: #fff;
+        height: 100%;
+        text-align: right;
+        width: 0.1%;
+    }
+
+</style>
+<script>
+    const playButton = document.querySelector('[wm-play]')
+    const playButtonID =`#${playButton.getAttribute('wm-play')}`
+    const pauseButton = document.querySelector('[wm-pause]')
+    const pauseButtonID =`#${playButton.getAttribute('wm-pause')}`
+
+    playButton.onclick = () => {
+        document.querySelector(playButtonID).play()
+        
+    }
+
+
+    pauseButton.onclick = () => {
+        document.querySelector(playButtonID).pause()
+    }
+
+    function AdvanceprogressBar() {
+        
+        const barraDeProgresso = document.querySelector('.progresso > div')
+
+        setInterval(() => {
+            const video = document.getElementById('meuVideo')
+            const videoTotalTime = Math.round(video.duration) 
+            let videoCurrentTime = Math.round(video.currentTime)
+            const percentual = `${videoCurrentTime/videoTotalTime * 100}%`
+            barraDeProgresso.style.width = percentual
+            barraDeProgresso.innerHTML = (videoCurrentTime/videoTotalTime * 100).toFixed(1)
+
+        }, 500)
+
+        
+    }
+    AdvanceprogressBar()
+
+</script>
