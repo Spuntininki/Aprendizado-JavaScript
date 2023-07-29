@@ -7,7 +7,123 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* ... */
+        * {
+            margin: 0px;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: lightgrey;
+        }
+
+        .cabecalho {
+            background-color: #6d5858;
+            border-bottom: solid #5255d4;
+            height: 80px;
+            box-sizing: content-box;
+
+        }
+
+        .menu a,
+        .autenticacao a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .logo {
+            display: inline-block;
+            width: 300px;
+            height: 50px;
+            padding: 15px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        .logo,
+        .menu,
+        .autenticacao {
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+
+        }
+
+        .menu ul li {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .menu a {
+            padding: 35px 10px 25px 10px;
+        }
+
+        .menu a:hover,
+        .menu a.selected {
+            background-color: #5255d4;
+            color: black;
+        }
+
+
+        .autenticacao {
+            float: right;
+            margin-top: 20px;
+        }
+
+
+
+        .botao {
+            display: inline-block;
+
+            padding: 10px;
+            background-color: tomato;
+            border-radius: 25px;
+
+        }
+
+        .botao-login {
+            padding: 35px 10px 25px 10px;
+
+        }
+
+        .botao-login:hover {
+            background-color: #5255d4;
+            color: black;
+        }
+
+        .botao:hover {
+            background-color: #5255d4;
+            color: black;
+        }
+
+        @media (max-width:900px) {
+            .autenticacao {
+                display: none;
+            }
+        }
+
+        @media (max-width:650px) {
+            .menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+                float: right;
+                margin-top: 20px;
+                background-color: #6d5858;
+                border: none;
+                color: #fff;
+            }
+
+
+        }
     </style>
 </head>
 
@@ -24,27 +140,37 @@
         <nav class="menu">
             <ul>
                 <li>
-                    <a href="#inicio">Início</a>
+                    <a href="#inicio" id="inicio">Inicio</a>
                 </li>
                 <li>
-                    <a href="#cursos">Cursos</a>
+                    <a href="#cursos" id="cursos">Cursos</a>
                 </li>
                 <li>
-                    <a href="#sobre">Sobre</a>
+                    <a href="#sobre" id="sobre">Sobre</a>
                 </li>
                 <li>
-                    <a href="#contato">Contato</a>
+                    <a href="#contato" id="contato">Contato</a>
                 </li>
             </ul>
         </nav>
         <aside class="autenticacao">
-            <a href="#login">Login</a>
-            <a href="#registar" class="botao destaque">Registrar</a>
+            <a href="#login" class="botao-login" id="login">Login</a>
+            <a href="#registrar" class="botao destaque" id="registrar">Registrar</a>
         </aside>
     </header>
 
     <script>
-        // ...
+        
+        window.onhashchange = function (e) {
+            const oldURL = e.oldURL.split('#')[1]
+            const newURL = e.newURL.split('#')[1]
+            console.log(oldURL, newURL)
+            const oldMenu = document.querySelector(`.menu [href='#${oldURL}']`)
+            const newMenu = document.querySelector(`.menu [href='#${newURL}']`)
+            oldMenu.classList.remove('selected')
+            newMenu.classList.add('selected')
+        
+        }
     </script>
 </body>
 
